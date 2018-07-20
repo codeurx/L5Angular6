@@ -10,7 +10,7 @@ export class AuthService {
     isLoggedIn: Boolean;
     login(email:string, pass:string) {
         return this.http.post(
-            'http://local.io:8080/L5Angular6/api/login',
+            'http://http://local.dev/L5Angular6/api/login',
             {email: email, password: pass}
             )
             .pipe(

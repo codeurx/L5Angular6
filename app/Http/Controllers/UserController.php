@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use JWTAuth;
 use Validator;
+use App\User;
 
 class UserController extends Controller
 {
@@ -18,6 +18,15 @@ class UserController extends Controller
         } else {
             return response()->json(['message' => 'Invalid credentials.'], 401);
         }
+    }
+    public function token(){
+        $user = User::find(1);
+        return $user->createToken('test token')->accessToken;
+    }
+    public function demo(){
+        if (Auth::check()) {
+            return Auth::user()->AauthAcessToken();
+         }
     }
 
 //    public function getUser(Request $request)
