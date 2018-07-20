@@ -16,12 +16,12 @@ use Illuminate\Http\Request;
 Route::post('/login', [
     'uses' => 'UserController@login'
 ]);
-Route::get('/user', [
-    'uses' => 'UserController@getUser',
-    'middleware' => 'jwt.auth'
-]);
-Route::get('/logout', [
-    'uses' => 'UserController@logout',
-    'middleware' => 'jwt.auth'
-]);
+//Route::get('/user', [
+//    'uses' => 'UserController@getUser',
+//    'middleware' => 'jwt.auth'
+//]);
+//Route::get('/logout', [
+//    'uses' => 'UserController@logout',
+//    'middleware' => 'jwt.auth'
+//]);
 

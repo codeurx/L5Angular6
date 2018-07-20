@@ -10,6 +10,7 @@ class UserController extends Controller
 {
     public function login(Request $request)
     {
+
         $credentials = $request->only('email', 'password');
         $token = JWTAuth::attempt($credentials);
         if ($token) {
@@ -19,16 +20,16 @@ class UserController extends Controller
         }
     }
 
-    public function getUser(Request $request)
-    {
-        $user = JWTAuth::parseToken()->authenticate();
-        return response()->json($user);
-    }
-
-    public function logout(Request $request)
-    {
-        $token = JWTAuth::getToken();
-        JWTAuth::invalidate($token);
-        return response()->json(['message' => 'The token has been blacklisted'], 200);
-    }
+//    public function getUser(Request $request)
+//    {
+//        $user = JWTAuth::parseToken()->authenticate();
+//        return response()->json($user);
+//    }
+//
+//    public function logout(Request $request)
+//    {
+//        $token = JWTAuth::getToken();
+//        JWTAuth::invalidate($token);
+//        return response()->json(['message' => 'The token has been blacklisted'], 200);
+//    }
 }
