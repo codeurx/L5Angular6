@@ -22,9 +22,9 @@ Route::get('/token', [
 Route::get('/demo', [
     'uses' => 'UserController@demo'
 ]);
-//Route::get('/user', [
-//    'uses' => 'UserController@getUser',
-//    'middleware' => 'jwt.auth'
+//Route::get('/test', [
+//   'uses' => 'UserController@getUser',
+//   'middleware' => 'jwt.auth'
 //]);
 //Route::get('/logout', [
 //    'uses' => 'UserController@logout',

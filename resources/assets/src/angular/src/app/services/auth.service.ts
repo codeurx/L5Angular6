@@ -10,7 +10,7 @@ export class AuthService {
     isLoggedIn: Boolean;
     login(email:string, pass:string) {
         return this.http.post(
-            'http://http://local.dev/L5Angular6/api/login',
+            'http://local.io:8080/L5Angular6/api/login',
             {email: email, password: pass}
             )
             .pipe(
@@ -53,5 +53,11 @@ export class AuthService {
     //             })
     //
     // }
-
+    checkAuth() {
+        if(localStorage.getItem('token')) {
+            this.isLoggedIn=true;
+            return true;
+        }
+        return false;
+    }
 }
