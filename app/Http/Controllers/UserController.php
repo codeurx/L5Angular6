@@ -24,10 +24,10 @@ class UserController extends Controller
 //        return response()->json($user);
 //    }
 //
-//    public function logout(Request $request)
-//    {
-//        $token = JWTAuth::getToken();
-//        JWTAuth::invalidate($token);
-//        return response()->json(['message' => 'The token has been blacklisted'], 200);
-//    }
+    public function logout(Request $request)
+    {
+        $token = JWTAuth::getToken();
+        JWTAuth::invalidate($token);
+        return response()->json(['message' => 'The token has been blacklisted'], 200);
+    }
 }

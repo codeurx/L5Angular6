@@ -26,22 +26,22 @@ export class AuthService {
                 }
             )
     }
-    // logout() {
-    //     return this.http.get(
-    //         'http://local.io:8080/L5Angular6/api/logout',
-    //         { headers: new Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('token') }) }
-    //     )
-    //         .map(
-    //             response => {
-    //                 return response.json().message;
-    //             })
-    //         .do(
-    //             () => {
-    //                 localStorage.removeItem('token');
-    //                 this.isLoggedIn = false;
-    //             }
-    //         )
-    // }
+    logout() {
+        return this.http.get(
+            'http://local.io:8080/L5Angular6/api/logout',
+            { headers: new Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('token') }) }
+        )
+            .map(
+                response => {
+                    return response.json().message;
+                })
+            .do(
+                () => {
+                    localStorage.removeItem('token');
+                    this.isLoggedIn = false;
+                }
+            )
+    }
     // user(){
     //     return this.http.get(
     //         'http://local.io:8080/air/api/user',

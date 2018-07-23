@@ -2,7 +2,6 @@ html,
 body {
     height: 100%;
 }
-
 .login{
     -ms-flex-align: center;
     -ms-flex-pack: center;
@@ -21,4 +20,18 @@ body {
     color: #FFF;
     padding: 7px;
     background: red;
+}
+.errors {
+    background: rgba(255, 0, 0, 0.5);
+    border-radius: 5px;
+    display: none;
+    text-align: center;
+    font-weight: bold;
+    color: #FFF;
+    margin-top: 5px;
+}
+
+.errors ul {
+    list-style: none;
+    margin-left: -39px;
 }

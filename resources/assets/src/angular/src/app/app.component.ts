@@ -9,13 +9,20 @@ import {Router} from "@angular/router";
 })
 export class AppComponent implements OnInit{
   title = 'app';
-  constructor(private rendrer: Renderer2,private authService: AuthService, private router: Router){
+  constructor(private rendrer: Renderer2,public authService: AuthService, private router: Router){
       this.rendrer.removeClass(document.body, 'text-center');
       this.rendrer.removeClass(document.body, 'login');
   }
   ngOnInit(){
-      if (! this.authService.checkAuth()) {
-          this.router.navigate(['login']);
-      }
+      this.authService.checkAuth();
+  }
+  logout() {
+      this.authService.logout().subscribe(
+          resp => function(){
+              this.router.navigate(['']);
+          },
+          err => console.log(err),
+          () => console.log("Unsubscribed")
+      );
   }
 }
