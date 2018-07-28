@@ -1,11 +1,11 @@
 <form #f="ngForm" class="form-signin" id="loginform">
-  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-  <label for="email" class="sr-only">Email address</label>
-  <input type="email" id="email" name="email" autocomplete="new-email" class="form-control" placeholder="Email address" autofocus ngModel>
-  <label for="password" class="sr-only">Password</label>
-  <input type="password" id="password" name="password" autocomplete="new-password" class="form-control" placeholder="Password" ngModel>
-  <div class="error">Invalid Credentials</div>
+  <h1 class="h3 mb-3 font-weight-normal">Authentification</h1>
+  <label for="email" class="sr-only">Adresse Email</label>
+  <input type="email" id="email" name="email" autocomplete="new-email" class="form-control" placeholder="Adresse Email" autofocus ngModel>
+  <label for="password" class="sr-only">Mot de passe</label>
+  <input type="password" id="password" name="password" autocomplete="new-password" class="form-control" placeholder="Mot de passe" ngModel>
+  <div class="error">Cordonnés Incorrectes</div>
   <div class="errors"><ul></ul></div>
-  <button class="btn btn-lg btn-primary btn-block" (click)="SubmitForm(f)">Sign in</button>
+  <button class="btn btn-lg btn-primary btn-block" (click)="SubmitForm(f)">Se Connecter</button>
   <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
 </form>

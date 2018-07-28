@@ -1,3 +1,4 @@
+import { environment } from '../../environments/environment';
 import { Injectable } from "@angular/core";
 import { Http, Response, Headers } from "@angular/http";
 import 'rxjs/Rx';
@@ -10,7 +11,7 @@ export class AuthService {
     isLoggedIn: Boolean;
     login(email:string, pass:string) {
         return this.http.post(
-            'http://local.io:8080/L5Angular6/api/login',
+            environment.apiUrl+'login',
             {email: email, password: pass}
             )
             .pipe(
@@ -28,7 +29,7 @@ export class AuthService {
     }
     logout() {
         return this.http.get(
-            'http://local.io:8080/L5Angular6/api/logout',
+            environment.apiUrl+'logout',
             { headers: new Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('token') }) }
         )
             .map(
@@ -42,17 +43,17 @@ export class AuthService {
                 }
             )
     }
-    // user(){
-    //     return this.http.get(
-    //         'http://local.io:8080/air/api/user',
-    //         { headers: new Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('token') }) }
-    //     )
-    //         .map(
-    //             response => {
-    //                 return response.json().user;
-    //             })
-    //
-    // }
+    user(){
+        return this.http.get(
+            environment.apiUrl+'user',
+            { headers: new Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('token') }) }
+        )
+            .map(
+                response => {
+                    return response.json().user;
+                })
+    
+    }
     checkAuth() {
         if(localStorage.getItem('token')) {
             this.isLoggedIn=true;

@@ -18,12 +18,13 @@ class UserController extends Controller
             return response()->json('', 401);
         }
     }
-//    public function getUser(Request $request)
-//    {
-//        $user = JWTAuth::parseToken()->authenticate();
-//        return response()->json($user);
-//    }
-//
+    
+    public function getUser(Request $request)
+    {
+        $user = JWTAuth::parseToken()->authenticate();
+        return response()->json(['user'=>$user]);
+    }
+
     public function logout(Request $request)
     {
         $token = JWTAuth::getToken();

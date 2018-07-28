@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
       this.rendrer.addClass(document.body, 'login');
   }
   ngOnInit() {
+      if(this.authService.checkAuth())
+        this.router.navigate(['']);
   }
   SubmitForm(f: NgForm){
       var authS = this.authService;
@@ -49,7 +51,7 @@ export class LoginComponent implements OnInit {
       });
       function submitForm() {
           authS.login(f.value.email, f.value.password).subscribe(
-              response => console.log(response),
+              response => '',
                   error => {
                   $('.error').slideDown();
                   setTimeout(function(){
