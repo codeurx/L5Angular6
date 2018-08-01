@@ -1,16 +1,15 @@
-import { Router } from '@angular/router';
-import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 declare var jquery:any;
 declare var $ :any;
-
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
-export class DashboardComponent implements OnInit {
-  constructor(private authservice:AuthService, private router:Router) { }
+export class ProfileComponent implements OnInit {
+
+  constructor() { }
+
   ngOnInit() {
     $(document).ready(function(){
       $(document).initapp();
@@ -20,8 +19,9 @@ export class DashboardComponent implements OnInit {
       $(document).initappform();
       $(document).initsearch();
       $(document).initappvendor();
-      //$(document).initdemo();
+      $(document).initdemo();
       $(document).initdashboard();
     });
   }
+
 }

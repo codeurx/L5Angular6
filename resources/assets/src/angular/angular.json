@@ -58,7 +58,7 @@
               "src/assets/js/core/source/AppForm.js",
               "src/assets/js/core/source/AppNavSearch.js",
               "src/assets/js/core/source/AppVendor.js",
-              "src/assets/js/core/demo/Demo.js",
+              
               "src/assets/js/core/demo/DemoDashboard.js"
             ]
           },

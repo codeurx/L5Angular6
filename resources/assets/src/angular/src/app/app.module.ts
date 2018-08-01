@@ -11,6 +11,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { FlotComponent } from './components/flot/flot.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     LoginComponent,
     DashboardComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    ProfileComponent,
+    FlotComponent
   ],
   imports: [
     BrowserModule,BrowserAnimationsModule,HttpModule,routing,FormsModule
