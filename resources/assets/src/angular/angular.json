@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "../../../../dist/angular",
+            "outputPath": "dist/angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -23,43 +23,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/css/bootstrap.css",
-              "src/assets/css/materialadmin.css",
-              "src/assets/css/font-awesome.min.css",
-              "src/assets/css/material-design-iconic-font.min.css",
-              "src/assets/css/libs/rickshaw/rickshaw.css",
-              "src/assets/css/libs/morris/morris.core.css",
-              "src/styles.css"
+              "src/assets/app/vendors/css/ui/prism.min.css",
+              "src/assets/app/css/vendors.css",
+              "src/assets/scss/app.scss",
+              "src/assets/scss/core/menu/menu-types/vertical-menu-modern.scss",
+              "src/assets/scss/style.scss"
             ],
             "scripts": [
-              "src/assets/js/libs/jquery/jquery-1.11.2.min.js",
-              "node_modules/jquery-validation/dist/jquery.validate.min.js",
-              "src/assets/js/libs/jquery/jquery-migrate-1.2.1.min.js",
-              "src/assets/js/libs/bootstrap/bootstrap.min.js",
-              "src/assets/js/libs/spin.js/spin.min.js",
-              "src/assets/js/libs/autosize/jquery.autosize.min.js",
-              "src/assets/js/libs/moment/moment.min.js",
-              "src/assets/js/libs/flot/jquery.flot.min.js",
-              "src/assets/js/libs/flot/jquery.flot.time.min.js",
-              "src/assets/js/libs/flot/jquery.flot.resize.min.js",
-              "src/assets/js/libs/flot/jquery.flot.orderBars.js",
-              "src/assets/js/libs/flot/jquery.flot.pie.js",
-              "src/assets/js/libs/flot/curvedLines.js",
-              "src/assets/js/libs/jquery-knob/jquery.knob.min.js",
-              "src/assets/js/libs/sparkline/jquery.sparkline.min.js",
-              "src/assets/js/libs/nanoscroller/jquery.nanoscroller.min.js",
-              "src/assets/js/libs/d3/d3.min.js",
-              "src/assets/js/libs/d3/d3.v3.js",
-              "src/assets/js/libs/rickshaw/rickshaw.min.js",
-              "src/assets/js/core/source/App.js",
-              "src/assets/js/core/source/AppNavigation.js",
-              "src/assets/js/core/source/AppOffcanvas.js",
-              "src/assets/js/core/source/AppCard.js",
-              "src/assets/js/core/source/AppForm.js",
-              "src/assets/js/core/source/AppNavSearch.js",
-              "src/assets/js/core/source/AppVendor.js",
-              
-              "src/assets/js/core/demo/DemoDashboard.js"
+              "src/assets/app/vendors/js/vendors.min.js",
+              "src/assets/app/vendors/js/ui/prism.min.js"
             ]
           },
           "configurations": {

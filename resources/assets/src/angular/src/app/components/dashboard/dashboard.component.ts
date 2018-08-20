@@ -1,8 +1,7 @@
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
-import { Component, OnInit } from '@angular/core';
-declare var jquery:any;
-declare var $ :any;
+import { Component, OnInit,Renderer2 } from '@angular/core';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -10,18 +9,11 @@ declare var $ :any;
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  constructor(private authservice:AuthService, private router:Router) { }
+  constructor(private renderer: Renderer2) {
+    this.renderer.addClass(document.body, '2-columns');
+    this.renderer.setAttribute(document.body, 'data-col', '2-columns');
+   }
   ngOnInit() {
-    $(document).ready(function(){
-      $(document).initapp();
-      $(document).initnavigation();
-      $(document).initappcanvas();
-      $(document).initappcard();
-      $(document).initappform();
-      $(document).initsearch();
-      $(document).initappvendor();
-      //$(document).initdemo();
-      $(document).initdashboard();
-    });
+
   }
 }
