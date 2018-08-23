@@ -1,0 +1,9 @@
+<div *ngIf="user?.avatar!=null; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+  <img src="assets/app/images/avatars/{{user?.avatar}}" alt="avatar">
+</ng-template>
+<ng-template #elseBlock>
+  <div class="avatartxt" [style.background]="Upper(user?.fname).color">
+    {{Upper(user?.fname).word}}
+  </div>
+</ng-template>

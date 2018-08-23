@@ -4,4 +4,5 @@ export class User {
     lname:string;
     email:string;
     avatar:string;
+    role:string;
 }

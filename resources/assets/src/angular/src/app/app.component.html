@@ -1,1 +1,5 @@
+<app-navbar *ngIf="route != '/authetification'"></app-navbar>
+<app-sidebar *ngIf="route != '/authetification'"></app-sidebar>
+{{route}}
 <router-outlet></router-outlet>
+<app-footer *ngIf="route != '/authetification'"></app-footer>

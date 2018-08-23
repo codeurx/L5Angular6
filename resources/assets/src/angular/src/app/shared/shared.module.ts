@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
- import { CommonModule } from "@angular/common";
- import { RouterModule } from "@angular/router";
-
- import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from "./footer/footer.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { ToggleFullscreenDirective } from "./directives/toggle-fullscreen.directive";
-
-
-
+import { AvatarComponent } from './avatar/avatar.component';
 @NgModule({
     exports: [
         CommonModule,
@@ -20,7 +16,7 @@ import { ToggleFullscreenDirective } from "./directives/toggle-fullscreen.direct
         ToggleFullscreenDirective,
         NgbModule
     ],
-    imports:[
+    imports: [
         RouterModule,
         CommonModule,
         NgbModule
@@ -29,7 +25,8 @@ import { ToggleFullscreenDirective } from "./directives/toggle-fullscreen.direct
         FooterComponent,
         NavbarComponent,
         SidebarComponent,
-        ToggleFullscreenDirective
-        ]
+        ToggleFullscreenDirective,
+        AvatarComponent
+    ]
 })
 export class SharedModule { }

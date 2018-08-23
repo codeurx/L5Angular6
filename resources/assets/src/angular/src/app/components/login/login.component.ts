@@ -8,8 +8,10 @@ import {AuthService} from "../../services/auth.service";
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+    hide = true;
   constructor(private router: Router,public authService: AuthService) {}
   ngOnInit() {
+      console.log(this.hide)
       if(this.authService.checkAuth())
         this.router.navigate(['']);
   }
@@ -17,7 +19,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(f.value.email, f.value.password).subscribe(
         response => '',
             error => {
-            
             }, () => this.router.navigate([''])
         )
   }

@@ -1,8 +1,6 @@
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit,Renderer2 } from '@angular/core';
-
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,6 +12,5 @@ export class DashboardComponent implements OnInit {
     this.renderer.setAttribute(document.body, 'data-col', '2-columns');
    }
   ngOnInit() {
-
   }
 }

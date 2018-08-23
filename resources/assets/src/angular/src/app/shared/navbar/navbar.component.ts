@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
     logout() {
         this.authservice.logout().subscribe(
             resp => {
-                this.router.navigate(['login']);
+                this.router.navigate(['authentification']);
             }
         );
     }

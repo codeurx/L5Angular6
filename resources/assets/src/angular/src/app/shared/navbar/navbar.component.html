@@ -34,7 +34,7 @@
           <li class="dropdown dropdown-user nav-item" ngbDropdown placement="bottom-right">
             <a href="javascript:;" class="dropdown-toggle nav-link dropdown-user-link" id="dropdownUser" ngbDropdownToggle>
               <span class="avatar avatar-online">
-                <img src="assets/app/images/avatars/{{user?.avatar}}" alt="avatar">
+                <app-avatar></app-avatar>
                 <i></i>
               </span>
               <span class="user-name">{{user?.fname+' '+user?.lname}}</span>
@@ -44,7 +44,7 @@
                 <i class="ft-user"></i> Mon Profil
               </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" routerLink="/login" (click)="logout()">
+              <a class="dropdown-item" routerLink="/authentification" (click)="logout()">
                 <i class="ft-power"></i> Déconnexion
               </a>
             </div>

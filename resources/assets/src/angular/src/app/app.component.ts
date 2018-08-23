@@ -9,7 +9,10 @@ import {Router} from "@angular/router";
 })
 export class AppComponent implements OnInit{
   title = 'app';
-  constructor(private rendrer: Renderer2){
+  route: string;
+
+  constructor(private rendrer: Renderer2, private router:Router){
+    this.route = router.url; 
     //   this.rendrer.removeClass(document.body, 'text-center');
     //   this.rendrer.removeClass(document.body, 'login');
   }

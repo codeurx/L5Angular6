@@ -11,17 +11,7 @@ export class ProfileComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    $(document).ready(function(){
-      $(document).initapp();
-      $(document).initnavigation();
-      $(document).initappcanvas();
-      $(document).initappcard();
-      $(document).initappform();
-      $(document).initsearch();
-      $(document).initappvendor();
-      $(document).initdemo();
-      $(document).initdashboard();
-    });
+    
   }
 
 }
