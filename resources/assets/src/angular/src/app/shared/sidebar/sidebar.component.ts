@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTES } from './sidebar-routes.config';
-import { RouteInfo } from "./sidebar.metadata";
 import { Router, ActivatedRoute } from "@angular/router";
-
+import { SidebarService } from '../../services/sidebar.service';
+import { ROUTES } from './sidebar-routes.config';
 declare var $: any;
 @Component({
     // moduleId: module.id,
@@ -11,17 +10,14 @@ declare var $: any;
 })
 
 export class SidebarComponent implements OnInit {
-    public menuItems: any[];
-
-    constructor(private router: Router,
-        private route: ActivatedRoute) {
-    }
-
-    ngOnInit() {
+    menuItems: any[];
+    constructor(private router: Router,private route: ActivatedRoute,public side: SidebarService) {
         $.getScript('./assets/app/js/core/app-menu.js');
         $.getScript('./assets/app/js/core/app.js');
-       
         this.menuItems = ROUTES.filter(menuItem => menuItem);
+    }
+    ngOnInit() {
+        
     }
 
 }

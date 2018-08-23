@@ -1,10 +1,9 @@
 <!-- Sidebar Content starts -->
-<div id="stackMenu" data-scroll-to-active="true" class="main-menu menu-fixed menu-dark menu-accordion menu-shadow expanded">
+<div *ngIf="side.visible"  id="stackMenu" data-scroll-to-active="true" class="main-menu menu-fixed menu-dark menu-accordion menu-shadow expanded">
     <!-- main menu content-->
     <div class="main-menu-content">
         <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
             <!-- First level menu -->
-
             <li *ngFor="let menuItem of menuItems" [ngClass]="[menuItem.class]" [routerLinkActive]="menuItem.submenu.length != 0 ? '' : 'active'"
                 [routerLinkActiveOptions]="{exact: true}">
                 <a [routerLink]="menuItem.class === 'nav-item' ? [menuItem.path] : null" *ngIf="!menuItem.isExternalLink && !menuItem.isNavHeader">
@@ -20,7 +19,6 @@
                 <span *ngIf="menuItem.isNavHeader">{{menuItem.title}}</span>
                 <i *ngIf="menuItem.isNavHeader" data-toggle="tooltip" data-placement="right" [attr.data-original-title]="menuItem.title"
                     [ngClass]="[menuItem.icon]"></i>
-
                 <!-- Second level menu -->
                 <ul class="menu-content" *ngIf="menuItem.submenu.length > 0">
                     <li *ngFor="let menuSubItem of menuItem.submenu" [routerLinkActive]="menuSubItem.submenu.length > 0 ? '' : 'active'" [ngClass]="[menuSubItem.class]">

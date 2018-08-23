@@ -1,4 +1,4 @@
-<nav id="stackNav" #stackNav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-semi-dark navbar-shadow">
+<nav *ngIf="nav.visible"  id="stackNav" #stackNav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-semi-dark navbar-shadow">
   <div class="navbar-wrapper">
     <div class="navbar-header">
       <ul class="nav navbar-nav flex-row">
@@ -37,7 +37,7 @@
                 <app-avatar></app-avatar>
                 <i></i>
               </span>
-              <span class="user-name">{{user?.fname+' '+user?.lname}}</span>
+              <span class="user-name">{{nav.user?.fname+' '+nav.user?.lname}}</span>
             </a>
             <div ngbDropdownMenu aria-labelledby="dropdownUser">
               <a class="dropdown-item" href="javascript:;">
