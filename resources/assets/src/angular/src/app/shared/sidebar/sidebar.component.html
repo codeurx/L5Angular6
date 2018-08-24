@@ -1,10 +1,10 @@
 <!-- Sidebar Content starts -->
-<div *ngIf="side.visible"  id="stackMenu" data-scroll-to-active="true" class="main-menu menu-fixed menu-dark menu-accordion menu-shadow expanded">
+<div id="stackMenu" data-scroll-to-active="true" class="main-menu menu-fixed menu-dark menu-accordion menu-shadow expanded">
     <!-- main menu content-->
     <div class="main-menu-content">
         <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
             <!-- First level menu -->
-            <li *ngFor="let menuItem of menuItems" [ngClass]="[menuItem.class]" [routerLinkActive]="menuItem.submenu.length != 0 ? '' : 'active'"
+            <li *ngFor="let menuItem of menuItems" [ngClass]="[menuItem.class]" [routerLinkActive]="menuItem.submenu.length != 0 ? '' : 'active open'"
                 [routerLinkActiveOptions]="{exact: true}">
                 <a [routerLink]="menuItem.class === 'nav-item' ? [menuItem.path] : null" *ngIf="!menuItem.isExternalLink && !menuItem.isNavHeader">
                     <i [ngClass]="[menuItem.icon]"></i>
@@ -21,7 +21,7 @@
                     [ngClass]="[menuItem.icon]"></i>
                 <!-- Second level menu -->
                 <ul class="menu-content" *ngIf="menuItem.submenu.length > 0">
-                    <li *ngFor="let menuSubItem of menuItem.submenu" [routerLinkActive]="menuSubItem.submenu.length > 0 ? '' : 'active'" [ngClass]="[menuSubItem.class]">
+                    <li *ngFor="let menuSubItem of menuItem.submenu" [routerLinkActive]="menuSubItem.submenu.length > 0 ? '' : 'active open'" [ngClass]="[menuSubItem.class]">
                         <a [routerLink]="menuSubItem.submenu.length > 0 ? null : [menuSubItem.path]" *ngIf="!menuSubItem.isExternalLink && !menuItem.isNavHeader; else externalSubLinkBlock">
                             <i [ngClass]="[menuSubItem.icon]"></i>
                             <span class="menu-title">{{menuSubItem.title}}</span>
@@ -36,7 +36,7 @@
                         </ng-template>
                         <!-- Third level menu -->
                         <ul class="menu-content" *ngIf="menuSubItem.submenu.length > 0">
-                            <li *ngFor="let menuSubsubItem of menuSubItem.submenu" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                            <li *ngFor="let menuSubsubItem of menuSubItem.submenu" routerLinkActive="active open" [routerLinkActiveOptions]="{exact: true}"
                                 [ngClass]="[menuSubsubItem.class]">
                                 <a [routerLink]="[menuSubsubItem.path]" *ngIf="!menuSubsubItem.isExternalLink && !menuItem.isNavHeader; else externalSubSubLinkBlock">
                                     <i [ngClass]="[menuSubsubItem.icon]"></i>
