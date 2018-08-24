@@ -10,7 +10,8 @@ export const childRoutes: Routes = [
         children: [
             { path: '', redirectTo: 'index', pathMatch: 'full'},
             { path: 'index', loadChildren: './index/index.module#IndexModule', canActivate:[AuthGuard] },
-            { path: 'departements', loadChildren: './departements/departements.module#DepartementsModule', canActivate:[AuthGuard] }
+            { path: 'gestion-departements', loadChildren: './departements/departements.module#DepartementsModule', canActivate:[AuthGuard] },
+            { path: 'types-stages', loadChildren: './types-stages/types-stages.module#TypesStagesModule', canActivate: [AuthGuard] }
         ]
     }
 ];

@@ -10,6 +10,7 @@ import { User } from '../../models/user';
 })
 export class DepartementsComponent implements OnInit {
   user: User[];
+  public Title: string;
   constructor(private authservice: AuthService, private router: Router) { }
   ngOnInit() {
     this.authservice.user().subscribe(user => {
@@ -17,6 +18,7 @@ export class DepartementsComponent implements OnInit {
       if ((user.role != 'superadmin') && (user.role != 'admin')) {
         this.router.navigate(['pages/index']);
       }
+      this.Title = 'Gestion Départements';
     })
   }
 }

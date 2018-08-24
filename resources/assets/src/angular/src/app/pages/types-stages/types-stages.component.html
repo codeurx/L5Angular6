@@ -1,0 +1,38 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <app-titlelink [TitleText]="Title"></app-titlelink>
+    <div class="content-body">
+      <section class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-content">
+              <div class="card-body">
+                <div class="card-text">
+                  <table class="table">
+                    <thead class="thead-inverse">
+                      <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+<tr *ngFor="let ts of typestage">
+                        <td>{{ ts.id }}</td>
+                        <td>{{ ts.name }}</td>
+                        <td>
+                          <a [routerLink]="['/aircraft', ts.id]" class="btn btn-info btn-sm">Edit</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

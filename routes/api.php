@@ -15,4 +15,9 @@ Route::get('/logout', [
     'uses' => 'UserController@logout',
     'middleware' => 'jwt.auth'
 ]);
+Route::get('/types-stages', [
+    'uses' => 'TypeStageController@all',
+    'middleware' => 'jwt.auth',
+]);
+
 
