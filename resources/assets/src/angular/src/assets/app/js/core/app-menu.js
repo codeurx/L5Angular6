@@ -572,6 +572,7 @@
         this.drillDownMenu(screen);
 
         $('a.dropdown-item.nav-has-children').on('click',function(){
+          console.log('demo')
           event.preventDefault();
           event.stopPropagation();
         });

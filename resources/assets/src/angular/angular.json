@@ -27,21 +27,21 @@
               "src/assets/app/css/vendors.css",
               "src/assets/scss/app.scss",
               "src/assets/scss/core/menu/menu-types/vertical-menu-modern.scss",
+              "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
               "src/assets/scss/style.scss"
             ],
             "scripts": [
+              "node_modules/chart.js/dist/Chart.js",
               "src/assets/app/vendors/js/vendors.min.js",
               "src/assets/app/vendors/js/ui/prism.min.js"
             ]
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,

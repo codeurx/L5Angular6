@@ -8,16 +8,16 @@
             <div class="card-content">
               <div class="card-body">
                 <div class="card-text">
-                  <table class="table">
+                  <table class="table table-bordered table-striped">
                     <thead class="thead-inverse">
                       <tr>
-                        <th>Id</th>
+                        <th>#</th>
                         <th>Nom</th>
                         <th></th>
                       </tr>
                     </thead>
                     <tbody>
-<tr *ngFor="let ts of typestage">
+                      <tr *ngFor="let ts of typestage">
                         <td>{{ ts.id }}</td>
                         <td>{{ ts.name }}</td>
                         <td>
@@ -26,7 +26,24 @@
                       </tr>
                     </tbody>
                   </table>
-
+                  <ng-template #add let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Ajouter Type Stage</h4>
+                      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="md-form">
+                        <input mdbInputDirective type="text" id="form1" class="form-control">
+                        <label for="form1" class="">Example label</label>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+                    </div>
+                  </ng-template>
+                  <button class="btn btn-dark square btn-min-width mb-1 float-md-right" (click)="btnAdd(add)">Ajouter</button>
                 </div>
               </div>
             </div>

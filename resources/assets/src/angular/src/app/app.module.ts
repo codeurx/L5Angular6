@@ -12,12 +12,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from './shared/shared.module';
 import * as jquery from 'jquery';
 import { PagesModule } from './pages/pages.module';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 @NgModule({
   declarations: [
     AppComponent 
   ],
   imports: [
-    BrowserModule,BrowserAnimationsModule,HttpModule,NgxPaginationModule,routing,FormsModule,PagesModule,SharedModule,NgbModule.forRoot()
+    BrowserModule,BrowserAnimationsModule,HttpModule,NgxPaginationModule,routing,FormsModule,PagesModule,SharedModule,NgbModule.forRoot(),MDBBootstrapModule.forRoot()
   ],
   providers: [AuthService,AuthGuard],
   bootstrap: [AppComponent]
