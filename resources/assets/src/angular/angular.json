@@ -23,11 +23,11 @@
               "src/assets"
             ],
             "styles": [
+               "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
               "src/assets/app/vendors/css/ui/prism.min.css",
               "src/assets/app/css/vendors.css",
               "src/assets/scss/app.scss",
               "src/assets/scss/core/menu/menu-types/vertical-menu-modern.scss",
-              "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
               "src/assets/scss/style.scss"
             ],
             "scripts": [

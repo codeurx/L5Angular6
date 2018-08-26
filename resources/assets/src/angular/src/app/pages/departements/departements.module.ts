@@ -1,4 +1,3 @@
-import { TitlelinkComponent } from './../../shared/titlelink/titlelink.component';
 import { DepartementsComponent } from './departements.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

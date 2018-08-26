@@ -1,3 +1,4 @@
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
@@ -7,6 +8,7 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { ToggleFullscreenDirective } from "./directives/toggle-fullscreen.directive";
 import { AvatarComponent } from './avatar/avatar.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 @NgModule({
     exports: [
         CommonModule,
@@ -14,12 +16,15 @@ import { AvatarComponent } from './avatar/avatar.component';
         NavbarComponent,
         SidebarComponent,
         ToggleFullscreenDirective,
-        NgbModule
+        NgbModule,
+        MDBBootstrapModule,
+        NgbModule, ReactiveFormsModule
     ],
     imports: [
         RouterModule,
         CommonModule,
-        NgbModule
+        FormsModule,
+        NgbModule, ReactiveFormsModule
     ],
     declarations: [
         FooterComponent,

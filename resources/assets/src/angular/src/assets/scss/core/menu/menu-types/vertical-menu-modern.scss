@@ -64,7 +64,7 @@ body.vertical-layout{
                     }
                 }
                 .navbar-container {
-                    @include main-menu-width($menu-expanded-width);
+                    width:auto !important;
                 }
                 .navbar-brand{
                     .brand-text{
