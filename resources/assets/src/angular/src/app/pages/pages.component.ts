@@ -1,3 +1,4 @@
+import { SlideInOutAnimation } from './../shared/animations';
 import { Component } from '@angular/core';
 @Component({
   selector: 'app-pages',

@@ -15,7 +15,7 @@ class UserController extends Controller
         if ($token) {
             return response()->json(['token' => $token]);
         } else {
-            return response()->json('', 401);
+            return response()->json(['error'], 401);
         }
     }
     

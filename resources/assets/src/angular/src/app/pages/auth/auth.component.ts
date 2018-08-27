@@ -1,31 +1,36 @@
 import { AuthService } from '../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, Validators, FormBuilder} from '@angular/forms';
-
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { SlideInOutAnimation } from '../../shared/animations';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  styleUrls: ['./auth.component.css'],
+  animations: [SlideInOutAnimation]
 })
 export class AuthComponent implements OnInit {
- loginForm: FormGroup;
-  constructor(private router: Router, public authService: AuthService, private fb: FormBuilder ){
-    this.loginForm = fb.group({
-            'email': [null, Validators.minLength(3)],
-            'password': [null, Validators.minLength(6)],
-        });
-   }
+  loginForm: FormGroup;
+  animationState = 'out';
+  constructor(private router: Router, public authService: AuthService, private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
   ngOnInit() {
-    if(this.authService.checkAuth())
+    if (this.authService.checkAuth())
       this.router.navigate(['pages/index']);
-}
-  SubmitForm(){
-    console.log(this.loginForm);
-  /* this.authService.login(f.value.email, f.value.password).subscribe(
+  }
+  SubmitForm(loginForm) {
+    this.authService.login(loginForm.controls.email.value, loginForm.controls.password.value).subscribe(
       response => '',
-          error => {
-          }, () => this.router.navigate(['pages/index'])
-      ) */
-}
+      error => {
+        this.animationState = 'in';
+        setTimeout(function () {
+          this.animationState = 'out';
+        }.bind(this), 1500);
+      }, () => this.router.navigate(['pages/index'])
+    )
+  }
 }

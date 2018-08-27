@@ -1,12 +1,15 @@
 <form [formGroup]="loginForm" class="form-signin">
   <h1 class="h3 mb-3 font-weight-normal">Authentification</h1>
   <div class="md-form">
-    <input mdbInputDirective type="email" id="email" name="email" class="form-control" data-error="wrong text" data-success="right text" formControlName="email">
+    <input mdbInputDirective type="email" id="email" name="email" class="form-control" data-error="email invalide" data-success=" " formControlName="email">
     <label for="email" class="">E-Mail</label>
   </div>
   <div class="md-form">
-    <input mdbInputDirective type="password" id="password" name="password" class="form-control" formControleName="password">
+    <input mdbInputDirective type="password" id="password" name="password" class="form-control" data-error="passe invalide" data-success=" " formControlName="password">
     <label for="password" class="">Mot de passe</label>
   </div>
-<button mdbBtn color="primary" class="waves-light" mdbWavesEffect (click)="SubmitForm(f)">Se Connecter</button>
+  <div [@slideInOut]="animationState" class="alert alert-danger mb-2">
+    Cordonnés incorrectes
+  </div>
+<button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="SubmitForm(loginForm)">Se Connecter</button>
 </form>
