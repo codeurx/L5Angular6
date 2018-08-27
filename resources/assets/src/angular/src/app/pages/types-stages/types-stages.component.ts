@@ -16,6 +16,7 @@ import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import { TypestageService } from '../../services/typestage.service';
 import { TypeStage } from '../../models/typestage';
+import { SweetAlertService } from 'angular-sweetalert-service/js';
 
 @Component({
   selector: 'app-types-stages',
@@ -28,7 +29,7 @@ export class TypesStagesComponent implements OnInit {
   user: User[];
   typestage: TypeStage[];
   public Title = 'Types des Stages';
-  constructor(private authservice: AuthService, private router: Router, private typesStages: TypestageService, private modalService: NgbModal) { }
+  constructor(private authservice: AuthService, private router: Router, private typesStages: TypestageService, private modalService: NgbModal, private alertService: SweetAlertService) { }
   ngOnInit() {
     this.authservice.user().subscribe(user => {
       this.user = user;
@@ -48,5 +49,8 @@ export class TypesStagesComponent implements OnInit {
     }, (reason) => {
       console.log(reason)
     });
+  }
+  alert(){
+    this.alertService.swal('title','hello','error');
   }
 }

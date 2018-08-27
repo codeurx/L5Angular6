@@ -9,6 +9,7 @@ import { SidebarComponent } from "./sidebar/sidebar.component";
 import { ToggleFullscreenDirective } from "./directives/toggle-fullscreen.directive";
 import { AvatarComponent } from './avatar/avatar.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SweetAlertService } from 'angular-sweetalert-service';
 @NgModule({
     exports: [
         CommonModule,
@@ -32,6 +33,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
         SidebarComponent,
         ToggleFullscreenDirective,
         AvatarComponent
+    ],
+    providers:[
+        SweetAlertService
     ]
 })
 export class SharedModule { }

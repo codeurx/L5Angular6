@@ -22,6 +22,7 @@
     "@angular/router": "^6.0.3",
     "@ng-bootstrap/ng-bootstrap": "^3.0.0",
     "angular-bootstrap-md": "^6.2.2",
+    "angular-sweetalert-service": "^2.0.2",
     "bourbon": "^5.1.0",
     "chart.js": "^2.7.2",
     "classlist.js": "^1.1.20150312",

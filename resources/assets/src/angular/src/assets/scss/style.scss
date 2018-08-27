@@ -18,3 +18,17 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   margin-left: 0.2rem;
 }
 .white{background-color: transparent!important;}
+.pink,.grey.darken-2,.blue-grey.lighten-2 {
+  background-color: transparent !important;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, .05);
+}
+.ti{display: inline;margin-left: 10px;cursor: pointer;font-size: 16px;}
+.edit {
+  color: #0d9c0d;
+}
+
+.delete {
+  color: red;
+}
