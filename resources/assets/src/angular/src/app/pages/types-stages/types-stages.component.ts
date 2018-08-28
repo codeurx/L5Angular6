@@ -16,7 +16,7 @@ import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import { TypestageService } from '../../services/typestage.service';
 import { TypeStage } from '../../models/typestage';
-import { SweetAlertService } from 'angular-sweetalert-service/js';
+import { SweetAlertService } from 'angular-sweetalert-service';
 
 @Component({
   selector: 'app-types-stages',
@@ -25,7 +25,6 @@ import { SweetAlertService } from 'angular-sweetalert-service/js';
   encapsulation: ViewEncapsulation.None,
 })
 export class TypesStagesComponent implements OnInit {
-  closeResult: string;
   user: User[];
   typestage: TypeStage[];
   public Title = 'Types des Stages';
@@ -50,7 +49,15 @@ export class TypesStagesComponent implements OnInit {
       console.log(reason)
     });
   }
-  alert(){
-    this.alertService.swal('title','hello','error');
+  alert(msg){
+    this.alertService.confirm({
+      title: 'Delete account?'
+    })
+      .then(() => {
+        this.alertService.success({
+          title: 'Account deleted'
+        });
+      })
+      .catch(() => console.log('canceled'));
   }
 }

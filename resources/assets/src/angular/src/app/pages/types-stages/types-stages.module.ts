@@ -5,7 +5,7 @@ import { routing } from './types-stages.routing';
 import { SharedModule } from '../../shared/shared.module';
 import { TitleLinkModule } from '../../shared/titlelink/titlelink.module';
 import { TypestageService } from '../../services/typestage.service';
-
+import { SweetAlertService } from 'angular-sweetalert-service';
 @NgModule({
     imports: [
         CommonModule,
@@ -17,7 +17,8 @@ import { TypestageService } from '../../services/typestage.service';
         TypesStagesComponent
     ],
     providers:[
-        TypestageService
+        TypestageService,
+        SweetAlertService
     ]
 })
 export class TypesStagesModule { }
