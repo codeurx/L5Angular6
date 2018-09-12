@@ -8,26 +8,34 @@
             <div class="card-content">
               <div class="card-body">
                 <div class="card-text">
+                  <div class="row">
+                    <div class="col-4 ml-auto">
+                      <div class="md-form">
+                        <input mdbInputDirective type="text" class="form-control" name="searchname" data-success=" " id="searchname" [(ngModel)]="searchname" ngModel="searchname" (ngModelChange)="search($event)">
+                        <label for="searchname">Rechercher</label>
+                      </div>
+                    </div>
+                  </div>
                   <table class="table table-striped table-responsive-md">
                     <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Nom</th>
-                        <th width="70"></th>
-                      </tr>
+                    <tr>
+                      <th>#</th>
+                      <th>Nom</th>
+                      <th width="70"></th>
+                    </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let ts of typestage">
-                        <td>{{ ts.id }}</td>
-                        <td>{{ ts.name }}</td>
-                        <td>
-                          <i [routerLink]="['/aircraft', ts.id]" class="fa fa-pencil ti edit"></i>
-                          <i (click)="delete(ts.id)" class="fa fa-trash-o ti delete"></i>
-                        </td>
-                      </tr>
+                    <tr *ngFor="let ts of typestage">
+                      <td>{{ ts.id }}</td>
+                      <td>{{ ts.name }}</td>
+                      <td>
+                        <i (click)="edit(editmodal,ts)" class="fa fa-pencil ti edit"></i>
+                        <i (click)="delete(ts.id)" class="fa fa-trash-o ti delete"></i>
+                      </td>
+                    </tr>
                     </tbody>
                   </table>
-                  <ng-template #add let-c="close" let-d="dismiss">
+                  <ng-template #addmodal let-c="close" let-d="dismiss">
                     <div class="modal-header">
                       <h4 class="modal-title">Ajouter Type Stage</h4>
                       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -37,19 +45,46 @@
                     <div class="modal-body">
                       <form [formGroup]="newTsForm">
                         <div class="md-form">
-                          <input mdbInputDirective type="text" id="name" class="form-control" name="name" data-error="Nom invalide"
-                            data-success=" " formControlName="name" [(ngModel)]="name">
+                          <input mdbInputDirective type="text" id="name" class="form-control" name="name"
+                                 data-error="Nom invalide"
+                                 data-success=" " formControlName="name" [(ngModel)]="name">
                           <label for="name" class="">Nom</label>
                         </div>
                       </form>
                     </div>
                     <div class="modal-footer">
                       <button mdbBtn type="button" color="secondary" class="waves-light square mb-1 float-md-right"
-                        mdbWavesEffect (click)="savetypestage(newTsForm)" [disabled]="!newTsForm.valid">Enregistrer</button>
+                              mdbWavesEffect (click)="save(newTsForm)" [disabled]="!newTsForm.valid">Enregistrer
+                      </button>
                     </div>
                   </ng-template>
-                  <button mdbBtn type="button" color="primary" class="waves-light square mb-1 float-md-right" (click)="btnAdd(add)"
-                    mdbWavesEffect>Ajouter</button>
+                  <ng-template #editmodal let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Modifier type stage</h4>
+                      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form [formGroup]="newTsForm">
+                        <div class="md-form">
+                          <input mdbInputDirective type="text" class="form-control" name="name"
+                                 data-error="Nom invalide"
+                                 data-success=" " formControlName="name" [(ngModel)]="name">
+                          <label for="name" class="">Nom</label>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button mdbBtn type="button" color="secondary" class="waves-light square mb-1 float-md-right"
+                              mdbWavesEffect (click)="update(newTsForm)" [disabled]="!newTsForm.valid">Enregistrer
+                      </button>
+                    </div>
+                  </ng-template>
+                  <button mdbBtn type="button" color="primary" class="waves-light square mb-1 float-md-right"
+                          (click)="new(addmodal)"
+                          mdbWavesEffect>Ajouter
+                  </button>
                 </div>
               </div>
             </div>

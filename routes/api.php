@@ -24,3 +24,23 @@ Route::post('/save-new-type-stage', [
     'uses' => 'TypeStageController@save',
     'middleware' => 'jwt.auth',
 ]);
+Route::post('/update-type-stage', [
+    'uses' => 'TypeStageController@update',
+    'middleware' => 'jwt.auth',
+]);
+Route::get('/departments', [
+    'uses' => 'DepartmentController@list',
+    'middleware' => 'jwt.auth',
+]);
+Route::post('/save-department', [
+    'uses' => 'DepartmentController@save',
+    'middleware' => 'jwt.auth',
+]);
+Route::post('/update-department', [
+    'uses' => 'DepartmentController@update',
+    'middleware' => 'jwt.auth',
+]);
+Route::get('/delete-department-{id}', [
+    'uses' => 'DepartmentController@delete',
+    'middleware' => 'jwt.auth',
+]);

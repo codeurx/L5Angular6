@@ -22,4 +22,12 @@ class TypeStageController extends Controller
         TypeStage::find($id)->delete();
        return response()->json(['msg' => 'ok',], 200);
     }
+    public function update(Request $request)
+    {
+        $input = $request->all();
+        $type = TypeStage::find($input['id']);
+        $type->name = $input['name'];
+        $type->save();
+        return response()->json(['msg' => 'ok',], 200);
+    }
 }

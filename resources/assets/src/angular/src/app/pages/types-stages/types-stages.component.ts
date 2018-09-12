@@ -1,15 +1,5 @@
 import { ViewEncapsulation, Input } from '@angular/core';
-import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
-@Component({
-  selector: 'ngbd-modal-content'
-})
-
-export class NgbdModalContent {
-  @Input() title;
-  constructor(public activeModal: NgbActiveModal) { }
-}
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
@@ -27,7 +17,9 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 })
 export class TypesStagesComponent implements OnInit {
   name:string='';
+  id: number=0;
   user: User[];
+  searchname : string ="";
   typestage: TypeStage[];
   public Title = 'Types des Stages';
   newTsForm: FormGroup;
@@ -44,14 +36,10 @@ export class TypesStagesComponent implements OnInit {
       if ((user.role != 'superadmin') && (user.role != 'admin')) {
         this.router.navigate(['pages/index']);
       }
-      this.typesStages.getTypesStages()
-        .subscribe(
-          data => this.typestage = data,
-          error => console.log(error)
-        );
+      this.typesStages.list().subscribe(data => this.typestage = data, error => console.log(error));
     })
   }
-  btnAdd(content) {
+  new(content) {
     this.name= ''
     this.modalNewTypeStage =  this.modalService.open(content,{ centered: true });
     this.modalNewTypeStage.result.then((result) => {
@@ -62,13 +50,17 @@ export class TypesStagesComponent implements OnInit {
   }
   delete(id){
     this.alertService.confirm({
-      title: 'Voulez vous vraiment supprimer ce type de stage?'
+      title: 'Voulez vous vraiment supprimer ce type de stage?',
+      confirmButtonText:'Confirmer',
+      cancelButtonText:'Annuler',
+      confirmButtonClass:'btn btn-primary',
+      cancelButtonClass:'btn'
     })
       .then(() => {
-        this.typesStages.deleteTypeStage(id).subscribe(
+        this.typesStages.delete(id).subscribe(
           (response)=>{
             if(response.msg=='ok'){
-              this.typesStages.getTypesStages()
+              this.typesStages.list()
                 .subscribe(
                   data => this.typestage = data,
                   error => console.log(error)
@@ -82,12 +74,12 @@ export class TypesStagesComponent implements OnInit {
       })
       .catch(() => console.log('canceled'));
   }
-  savetypestage(newTsForm){
+  save(newTsForm){
     if(newTsForm.valid){
-      this.typesStages.savenew(newTsForm.controls.name.value).subscribe(
+      this.typesStages.save(newTsForm.controls.name.value).subscribe(
         (response)=>{
           if(response.msg=='ok'){
-            this.typesStages.getTypesStages()
+            this.typesStages.list()
               .subscribe(
                 data => this.typestage = data,
                 error => console.log(error)
@@ -99,4 +91,34 @@ export class TypesStagesComponent implements OnInit {
       );
   }
 }
+  edit(content,obj){
+    this.id = obj.id;
+    this.name = obj.name;
+    this.modalNewTypeStage =  this.modalService.open(content,{ centered: true });
+    this.modalNewTypeStage.result.then((result) => {
+      console.log(result)
+    }, (reason) => {
+      console.log(reason)
+    });
+  }
+  update(newTsForm){
+    if(newTsForm.valid){
+      this.typesStages.update(newTsForm.controls.name.value,this.id).subscribe(
+        (response)=>{
+          if(response.msg=='ok'){
+            this.typesStages.list()
+              .subscribe(
+                data => this.typestage = data,
+                error => console.log(error)
+              );
+            newTsForm.controls.name.value = '';
+            this.modalNewTypeStage.close();
+          }
+        }
+      );
+    }
+  }
+  search(evt){
+    console.log(evt)
+  }
 }

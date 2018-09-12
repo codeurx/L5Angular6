@@ -6,19 +6,21 @@ import { SharedModule } from '../../shared/shared.module';
 import { TitleLinkModule } from '../../shared/titlelink/titlelink.module';
 import { TypestageService } from '../../services/typestage.service';
 import { SweetAlertService } from 'angular-sweetalert-service';
+import {FormsModule} from "@angular/forms";
 @NgModule({
     imports: [
-        CommonModule,
-        SharedModule,
-        routing,
-        TitleLinkModule
+      CommonModule,
+      SharedModule,
+      routing,
+      TitleLinkModule,
+      FormsModule
     ],
     declarations: [
-        TypesStagesComponent
+      TypesStagesComponent
     ],
     providers:[
-        TypestageService,
-        SweetAlertService
+      TypestageService,
+      SweetAlertService
     ]
 })
 export class TypesStagesModule { }

@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { routing } from './departements.routing';
 import { SharedModule } from '../../shared/shared.module';
 import { TitleLinkModule } from '../../shared/titlelink/titlelink.module';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     imports: [
         CommonModule,
         SharedModule,
-        routing,TitleLinkModule
+        routing,TitleLinkModule,FormsModule
     ],
     declarations: [
         DepartementsComponent

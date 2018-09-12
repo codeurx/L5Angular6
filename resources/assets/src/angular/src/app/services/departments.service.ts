@@ -1,25 +1,26 @@
-import {environment} from './../../environments/environment.prod';
-import {Http, Headers} from '@angular/http';
-import {Injectable} from '@angular/core';
-import 'rxjs/Rx';
+import { Injectable } from '@angular/core';
+import {Headers, Http} from "@angular/http";
+import {environment} from "../../environments/environment.prod";
 import {map} from "rxjs/operators";
 
-@Injectable()
-export class TypestageService {
+@Injectable({
+  providedIn: 'root'
+})
+export class DepartmentsService {
   constructor(private http: Http) {}
   list() {
     return this.http.get(
-      environment.apiUrl + 'types-stages',
+      environment.apiUrl + 'departments',
       {headers: new Headers({'Authorization': 'Bearer ' + localStorage.getItem('token')})}
     )
       .map(
-        response => response.json().TypesStages,
+        response => response.json().list,
         error => console.log(error)
       );
   }
   delete(id) {
     return this.http.get(
-      environment.apiUrl + 'delete-type-stage-' + id,
+      environment.apiUrl + 'delete-department-' + id,
       {headers: new Headers({'Authorization': 'Bearer ' + localStorage.getItem('token')})}
     ).map(
       response => response.json(),
@@ -28,7 +29,7 @@ export class TypestageService {
   }
   save(name: string) {
     return this.http.post(
-      environment.apiUrl + 'save-new-type-stage',
+      environment.apiUrl + 'save-department',
       {name: name},
       {headers: new Headers({'Authorization': 'Bearer ' + localStorage.getItem('token')})}
     )
@@ -41,7 +42,7 @@ export class TypestageService {
   }
   update(name: string,id:number) {
     return this.http.post(
-      environment.apiUrl + 'update-type-stage',
+      environment.apiUrl + 'update-department',
       {id:id,name: name},
       {headers: new Headers({'Authorization': 'Bearer ' + localStorage.getItem('token')})}
     )
@@ -53,3 +54,4 @@ export class TypestageService {
       )
   }
 }
+
