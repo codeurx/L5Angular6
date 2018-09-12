@@ -8,6 +8,7 @@ import { TypestageService } from '../../services/typestage.service';
 import { TypeStage } from '../../models/typestage';
 import { SweetAlertService } from 'angular-sweetalert-service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
   selector: 'app-types-stages',
@@ -25,6 +26,16 @@ export class TypesStagesComponent implements OnInit {
   newTsForm: FormGroup;
   animationState = 'out';
   modalNewTypeStage :  any;
+  public config: PaginationInstance = {
+    id:'typesStages',
+    itemsPerPage: 5,
+    currentPage: 1,
+    totalItems:0
+  };
+  public labels: any = {
+    previousLabel: 'Préc',
+    nextLabel: 'Suiv'
+  };
   constructor(private authservice: AuthService, private router: Router, private typesStages: TypestageService, private modalService: NgbModal, private alertService: SweetAlertService, private fb: FormBuilder) {
     this.newTsForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -36,11 +47,14 @@ export class TypesStagesComponent implements OnInit {
       if ((user.role != 'superadmin') && (user.role != 'admin')) {
         this.router.navigate(['pages/index']);
       }
-      this.typesStages.list().subscribe(data => this.typestage = data, error => console.log(error));
+      this.typesStages.list(this.searchname, this.config.currentPage).subscribe((data) => {
+        this.typestage = data.data;
+        this.config.totalItems = data.total;
+      }, error => console.log(error));
     })
   }
   new(content) {
-    this.name= ''
+    this.name= '';
     this.modalNewTypeStage =  this.modalService.open(content,{ centered: true });
     this.modalNewTypeStage.result.then((result) => {
       console.log(result)
@@ -60,9 +74,11 @@ export class TypesStagesComponent implements OnInit {
         this.typesStages.delete(id).subscribe(
           (response)=>{
             if(response.msg=='ok'){
-              this.typesStages.list()
-                .subscribe(
-                  data => this.typestage = data,
+              this.typesStages.list(this.searchname, this.config.currentPage)
+                .subscribe((data) => {
+                  this.typestage = data.data;
+                  this.config.totalItems = data.total;
+                },
                   error => console.log(error)
                 );
               this.alertService.success({
@@ -79,9 +95,11 @@ export class TypesStagesComponent implements OnInit {
       this.typesStages.save(newTsForm.controls.name.value).subscribe(
         (response)=>{
           if(response.msg=='ok'){
-            this.typesStages.list()
-              .subscribe(
-                data => this.typestage = data,
+            this.typesStages.list(this.searchname, this.config.currentPage)
+              .subscribe((data) => {
+                this.typestage = data.data;
+                this.config.totalItems = data.total;
+              },
                 error => console.log(error)
               );
             newTsForm.controls.name.value = '';
@@ -106,9 +124,11 @@ export class TypesStagesComponent implements OnInit {
       this.typesStages.update(newTsForm.controls.name.value,this.id).subscribe(
         (response)=>{
           if(response.msg=='ok'){
-            this.typesStages.list()
-              .subscribe(
-                data => this.typestage = data,
+            this.typesStages.list(this.searchname, this.config.currentPage)
+              .subscribe((data) => {
+                this.typestage = data.data;
+                this.config.totalItems = data.total;
+              },
                 error => console.log(error)
               );
             newTsForm.controls.name.value = '';
@@ -119,6 +139,19 @@ export class TypesStagesComponent implements OnInit {
     }
   }
   search(evt){
-    console.log(evt)
+    this.typesStages.list(this.searchname, this.config.currentPage)
+      .subscribe((data) => {
+        this.typestage = data.data;
+        this.config.totalItems = data.total;
+      },
+        error => console.log(error)
+      );
+  }
+  onPageChange(number: number){
+    this.config.currentPage = number;
+    this.typesStages.list(this.searchname, this.config.currentPage).subscribe((data) => {
+      this.typestage = data.data;
+      this.config.totalItems = data.total;
+    }, error => console.log(error));
   }
 }

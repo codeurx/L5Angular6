@@ -12,8 +12,8 @@ Route::get('/logout', [
     'uses' => 'UserController@logout',
     'middleware' => 'jwt.auth'
 ]);
-Route::get('/types-stages', [
-    'uses' => 'TypeStageController@all',
+Route::post('/types-stages', [
+    'uses' => 'TypeStageController@list',
     'middleware' => 'jwt.auth',
 ]);
 Route::get('/delete-type-stage-{id}', [

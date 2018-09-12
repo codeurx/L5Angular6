@@ -1,3 +1,4 @@
+import { NgxPaginationModule } from 'ngx-pagination';
 import { TypesStagesComponent } from './types-stages.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,7 +14,7 @@ import {FormsModule} from "@angular/forms";
       SharedModule,
       routing,
       TitleLinkModule,
-      FormsModule
+      FormsModule, NgxPaginationModule
     ],
     declarations: [
       TypesStagesComponent

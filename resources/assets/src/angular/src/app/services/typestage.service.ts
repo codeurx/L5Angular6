@@ -7,9 +7,10 @@ import {map} from "rxjs/operators";
 @Injectable()
 export class TypestageService {
   constructor(private http: Http) {}
-  list() {
-    return this.http.get(
+  list(search, page) {
+    return this.http.post(
       environment.apiUrl + 'types-stages',
+      { search: search,page:page },
       {headers: new Headers({'Authorization': 'Bearer ' + localStorage.getItem('token')})}
     )
       .map(

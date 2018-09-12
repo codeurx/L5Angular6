@@ -1,3 +1,4 @@
+import { NgxPaginationModule } from 'ngx-pagination';
 import { AuthComponent } from './auth/auth.component';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
@@ -10,7 +11,8 @@ import { PagesComponent } from './pages.component';
         CommonModule,
         SharedModule,
         routing,
-        FormsModule      
+        FormsModule,
+        NgxPaginationModule      
     ],
     declarations: [
         PagesComponent,

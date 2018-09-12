@@ -7,9 +7,14 @@ use App\TypeStage;
 
 class TypeStageController extends Controller
 {
-    public function all()
+    public function list(Request $request)
     {
-        return response()->json(['TypesStages' => TypeStage::all(),], 200);
+        $type = TypeStage::query();
+        if ($request->get('search')) {
+            $type = $type->where("name", "LIKE", "%{$request->get('search')}%");
+        }
+        $type = $type->paginate(5);
+        return response()->json(['TypesStages' => $type,], 200);
     }
     public function save(Request $request){
         $input = $request->all();
