@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 import { TypestageService } from '../../services/typestage.service';
 import { TypeStage } from '../../models/typestage';
 import { SweetAlertService } from 'angular-sweetalert-service';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-types-stages',
@@ -25,10 +26,18 @@ import { SweetAlertService } from 'angular-sweetalert-service';
   encapsulation: ViewEncapsulation.None,
 })
 export class TypesStagesComponent implements OnInit {
+  name:string='';
   user: User[];
   typestage: TypeStage[];
   public Title = 'Types des Stages';
-  constructor(private authservice: AuthService, private router: Router, private typesStages: TypestageService, private modalService: NgbModal, private alertService: SweetAlertService) { }
+  newTsForm: FormGroup;
+  animationState = 'out';
+  modalNewTypeStage :  any;
+  constructor(private authservice: AuthService, private router: Router, private typesStages: TypestageService, private modalService: NgbModal, private alertService: SweetAlertService, private fb: FormBuilder) {
+    this.newTsForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+    });
+   }
   ngOnInit() {
     this.authservice.user().subscribe(user => {
       this.user = user;
@@ -43,21 +52,51 @@ export class TypesStagesComponent implements OnInit {
     })
   }
   btnAdd(content) {
-    this.modalService.open(content,{ centered: true }).result.then((result) => {
+    this.name= ''
+    this.modalNewTypeStage =  this.modalService.open(content,{ centered: true });
+    this.modalNewTypeStage.result.then((result) => {
       console.log(result)
     }, (reason) => {
       console.log(reason)
     });
   }
-  alert(msg){
+  delete(id){
     this.alertService.confirm({
-      title: 'Delete account?'
+      title: 'Voulez vous vraiment supprimer ce type de stage?'
     })
       .then(() => {
-        this.alertService.success({
-          title: 'Account deleted'
-        });
+        this.typesStages.deleteTypeStage(id).subscribe(
+          (response)=>{
+            if(response.msg=='ok'){
+              this.typesStages.getTypesStages()
+                .subscribe(
+                  data => this.typestage = data,
+                  error => console.log(error)
+                );
+              this.alertService.success({
+                title: 'Supprimé avec succés'
+              });
+            }
+          }
+         );
       })
       .catch(() => console.log('canceled'));
   }
+  savetypestage(newTsForm){
+    if(newTsForm.valid){
+      this.typesStages.savenew(newTsForm.controls.name.value).subscribe(
+        (response)=>{
+          if(response.msg=='ok'){
+            this.typesStages.getTypesStages()
+              .subscribe(
+                data => this.typestage = data,
+                error => console.log(error)
+              );
+            newTsForm.controls.name.value = '';
+            this.modalNewTypeStage.close();
+          }
+        }
+      );
+  }
+}
 }

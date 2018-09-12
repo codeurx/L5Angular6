@@ -11,4 +11,15 @@ class TypeStageController extends Controller
     {
         return response()->json(['TypesStages' => TypeStage::all(),], 200);
     }
+    public function save(Request $request){
+        $input = $request->all();
+        $type = new TypeStage();
+        $type->name = $input['name'];
+        $type->save();
+       return response()->json(['msg' => 'ok',], 200);
+    }
+    public function delete($id){
+        TypeStage::find($id)->delete();
+       return response()->json(['msg' => 'ok',], 200);
+    }
 }
