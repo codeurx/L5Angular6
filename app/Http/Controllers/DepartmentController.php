@@ -7,9 +7,13 @@ use App\Http\Controllers\DepartmentModel;
 
 class DepartmentController extends Controller
 {
-    public function list()
+    public function list(Request $request)
     {
-        return response()->json(['list'=>DepartmentModel::all()]);
+        $dep = DepartmentModel::query();
+        if ($request->get('search')) 
+            $dep = $dep->where("name", "LIKE", "%{$request->get('search')}%");
+        $dep = $dep->paginate(5);
+        return response()->json(['list' => $dep], 200);
     }
     public function save(Request $request){
         $input = $request->all();

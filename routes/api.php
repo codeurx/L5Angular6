@@ -28,7 +28,7 @@ Route::post('/update-type-stage', [
     'uses' => 'TypeStageController@update',
     'middleware' => 'jwt.auth',
 ]);
-Route::get('/departments', [
+Route::post('/departments', [
     'uses' => 'DepartmentController@list',
     'middleware' => 'jwt.auth',
 ]);

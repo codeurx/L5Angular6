@@ -1,3 +1,4 @@
+import { NgxPaginationModule } from 'ngx-pagination';
 import { DepartementsComponent } from './departements.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,7 +11,7 @@ import {FormsModule} from "@angular/forms";
     imports: [
         CommonModule,
         SharedModule,
-        routing,TitleLinkModule,FormsModule
+        routing, TitleLinkModule, FormsModule, NgxPaginationModule
     ],
     declarations: [
         DepartementsComponent

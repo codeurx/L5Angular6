@@ -8,9 +8,10 @@ import {map} from "rxjs/operators";
 })
 export class DepartmentsService {
   constructor(private http: Http) {}
-  list() {
-    return this.http.get(
+  list(search, page) {
+    return this.http.post(
       environment.apiUrl + 'departments',
+      { search: search, page: page },
       {headers: new Headers({'Authorization': 'Bearer ' + localStorage.getItem('token')})}
     )
       .map(

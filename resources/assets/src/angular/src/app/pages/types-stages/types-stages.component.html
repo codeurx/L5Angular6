@@ -37,7 +37,8 @@
                     </tbody>
                   </table>
                   <div class="has-text-centered">
-                    <pagination-controls [id]="config.id" [responsive]="true" [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel"  [maxSize]="7" (pageChange)="onPageChange($event)"></pagination-controls>
+                    <pagination-controls [id]="config.id" [responsive]="true" [previousLabel]="labels.previousLabel"
+                      [nextLabel]="labels.nextLabel" [maxSize]="7" (pageChange)="onPageChange($event)"></pagination-controls>
                   </div>
                   <ng-template #addmodal let-c="close" let-d="dismiss">
                     <div class="modal-header">

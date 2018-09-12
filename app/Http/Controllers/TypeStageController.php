@@ -10,9 +10,8 @@ class TypeStageController extends Controller
     public function list(Request $request)
     {
         $type = TypeStage::query();
-        if ($request->get('search')) {
+        if ($request->get('search')) 
             $type = $type->where("name", "LIKE", "%{$request->get('search')}%");
-        }
         $type = $type->paginate(5);
         return response()->json(['TypesStages' => $type,], 200);
     }
@@ -24,8 +23,8 @@ class TypeStageController extends Controller
        return response()->json(['msg' => 'ok',], 200);
     }
     public function delete($id){
-        TypeStage::find($id)->delete();
-       return response()->json(['msg' => 'ok',], 200);
+         TypeStage::find($id)->delete();
+         return response()->json(['msg' => 'ok',], 200);
     }
     public function update(Request $request)
     {

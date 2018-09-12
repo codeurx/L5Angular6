@@ -1,8 +1,9 @@
+import { Departement } from './../../models/departement';
+import { PaginationInstance } from 'ngx-pagination';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
-import {Departement} from "../../models/departement";
 import {DepartmentsService} from "../../services/departments.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
@@ -14,13 +15,25 @@ import {SweetAlertService} from "angular-sweetalert-service";
   styleUrls: ['./departements.component.css']
 })
 export class DepartementsComponent implements OnInit {
-  name:string='';
-  id:number=0;
+  name: string = '';
+  id: number = 0;
   user: User[];
-  public Title: string;
+  searchname: string = "";
   departments: Departement[];
+  public Title = 'Départements';
   newTsForm: FormGroup;
-  modalNewTypeStage :  any;
+  animationState = 'out';
+  modalNewTypeStage: any;
+  public config: PaginationInstance = {
+    id: 'typesStages',
+    itemsPerPage: 5,
+    currentPage: 1,
+    totalItems: 0
+  };
+  public labels: any = {
+    previousLabel: 'Préc',
+    nextLabel: 'Suiv'
+  };
   constructor(private authservice: AuthService, private router: Router, private Department:DepartmentsService, private modalService: NgbModal, private alertService: SweetAlertService, private fb: FormBuilder) {
     this.newTsForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -33,7 +46,7 @@ export class DepartementsComponent implements OnInit {
         this.router.navigate(['pages/index']);
       }
       this.Title = 'Gestion Départements';
-      this.Department.list().subscribe(data => this.departments = data, error => console.log(error));
+      this.Department.list(this.searchname, this.config.currentPage).subscribe((data) => { this.departments = data.data; this.config.totalItems = data.total; }, error => console.log(error));
     })
   }
   new(content) {
@@ -67,9 +80,9 @@ export class DepartementsComponent implements OnInit {
         this.Department.delete(id).subscribe(
           (response)=>{
             if(response.msg=='ok'){
-              this.Department.list()
+              this.Department.list(this.searchname, this.config.currentPage)
                 .subscribe(
-                  data => this.departments = data,
+                (data) => { this.departments = data.data; this.config.totalItems = data.total;},
                   error => console.log(error)
                 );
               this.alertService.success({
@@ -86,9 +99,9 @@ export class DepartementsComponent implements OnInit {
       this.Department.save(newTsForm.controls.name.value).subscribe(
         (response)=>{
           if(response.msg=='ok'){
-            this.Department.list()
+            this.Department.list(this.searchname, this.config.currentPage)
               .subscribe(
-                data => this.departments = data,
+              (data) => { this.departments = data.data; this.config.totalItems = data.total; },
                 error => console.log(error)
               );
             newTsForm.controls.name.value = '';
@@ -104,9 +117,9 @@ export class DepartementsComponent implements OnInit {
         (response)=>{
           if(response.msg=='ok'){
             console.log(response.msg)
-            this.Department.list()
+            this.Department.list(this.searchname, this.config.currentPage)
               .subscribe(
-                data => this.departments = data,
+              (data) => { this.departments = data.data; this.config.totalItems = data.total; },
                 error => console.log(error)
               );
             newTsForm.controls.name.value = '';
@@ -115,5 +128,21 @@ export class DepartementsComponent implements OnInit {
         }
       );
     }
+  }
+  search(evt) {
+    this.Department.list(this.searchname, this.config.currentPage)
+      .subscribe((data) => {
+        this.departments = data.data;
+        this.config.totalItems = data.total;
+      },
+        error => console.log(error)
+      );
+  }
+  onPageChange(number: number) {
+    this.config.currentPage = number;
+    this.Department.list(this.searchname, this.config.currentPage).subscribe((data) => {
+      this.departments = data.data;
+      this.config.totalItems = data.total;
+    }, error => console.log(error));
   }
 }
